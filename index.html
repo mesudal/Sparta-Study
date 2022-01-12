@@ -77,12 +77,20 @@ crossorigin="anonymous"></script>
         }
     </style>
     <script>
-        function show_box() {
-            $('#content-box').show();
-        }
-        function hide_box() {
-            $('#content-box').hide();
-        }
+        $.ajax({
+            type: "GET",
+            url: "http://spartacodingclub.shop/sparta_api/seoulair",
+            data: {},
+            success: function (response) {
+                let arr = response['RealtimeCityAir']['row'];
+                for(let i=0; i<arr.length; i++) {
+                    let nm = arr[i]['MSRSTE_NM'];
+                    let mvl = arr[i]['IDEX_MVL'];
+                    console.log(nm + " : " + mvl);
+                }
+            }
+        })
+
     </script>
 </head>
 <body>
